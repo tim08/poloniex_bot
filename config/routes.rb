@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'exchanges#index'
   resources :exchanges do
     collection do
       post 'reload'
