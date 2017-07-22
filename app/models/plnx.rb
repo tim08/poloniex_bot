@@ -19,11 +19,10 @@ class Plnx
   end
 
   def create_exchanges
-    browser = Watir::Browser.new(:phantomjs)
+    # browser = Watir::Browser.new(:phantomjs)
     @data.each do |key, value|
       web_url = WEB_URL + key
-      # browser = Watir::Browser.new
-      # browser = Watir::Browser.new(:phantomjs)
+      browser = Watir::Browser.new(:phantomjs)
       browser.goto(web_url)
       sleep 1
       document = Nokogiri::HTML(browser.html)
@@ -34,13 +33,13 @@ class Plnx
         document = Nokogiri::HTML(browser.html)
       end
 
-      while $last_ask_total == document.css('#asksTotal').text
-        sleep 1
-        p 'old data detected, add 1 sec'
-        document = Nokogiri::HTML(browser.html)
-      end
+      # while $last_ask_total == document.css('#asksTotal').text
+      #   sleep 1
+      #   p 'old data detected, add 1 sec'
+      #   document = Nokogiri::HTML(browser.html)
+      # end
       $last_ask_total = document.css('#asksTotal').text
-      # browser.close
+      browser.close
       Exchange.create(ex_type: key,
                       name: key.gsub('BTC_', ''),
                       last_price: value['last'],
@@ -51,7 +50,6 @@ class Plnx
                       buy_orders: document.css('#bidsTotal').text,
                       count_in_btc: 1.00/((value['last']).to_f))
     end
-    browser.close
   end
 
   def self.start
