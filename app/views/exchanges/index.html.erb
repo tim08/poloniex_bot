@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Exchanges</h1>
+last update <%= @exchanges.last.try(:created_at) %> - <%= $time_load.try(:round) %> sec.
+<h2><%= link_to 'Download', exchanges_path(format: 'csv') %></h2>
+
+<%= form_tag(reload_exchanges_path) do %>
+    <h2>    <%= submit_tag "Load New Data" %> </h2>
+<% end %>
+
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Last price</th>
+    <th>Percent change</th>
+    <th>High24hr</th>
+    <th>Low24hr</th>
+    <th>Sell orders</th>
+    <th>Buy orders</th>
+    <th>Count in BTC</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @exchanges.each do |exchange| %>
+      <tr class="<%= cycle('even', 'odd') -%>">
+        <td><%= exchange.name %></td>
+        <td><%= exchange.last_price %></td>
+        <td><%= exchange.percent_change %></td>
+        <td><%= exchange.high24hr %></td>
+        <td><%= exchange.low24hr %></td>
+        <td><%= exchange.sell_orders %></td>
+        <td><%= exchange.buy_orders %></td>
+        <td><%= exchange.count_in_btc %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+

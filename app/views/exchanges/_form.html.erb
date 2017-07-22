@@ -1,0 +1,62 @@
+<%= form_with(model: exchange, local: true) do |form| %>
+  <% if exchange.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(exchange.errors.count, "error") %> prohibited this exchange from being saved:</h2>
+
+      <ul>
+      <% exchange.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :ex_type %>
+    <%= form.number_field :ex_type, id: :exchange_ex_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_price %>
+    <%= form.text_field :last_price, id: :exchange_last_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :lowest_ask %>
+    <%= form.text_field :lowest_ask, id: :exchange_lowest_ask %>
+  </div>
+
+  <div class="field">
+    <%= form.label :highest_bid %>
+    <%= form.text_field :highest_bid, id: :exchange_highest_bid %>
+  </div>
+
+  <div class="field">
+    <%= form.label :percent_change %>
+    <%= form.text_field :percent_change, id: :exchange_percent_change %>
+  </div>
+
+  <div class="field">
+    <%= form.label :base_volume %>
+    <%= form.text_field :base_volume, id: :exchange_base_volume %>
+  </div>
+
+  <div class="field">
+    <%= form.label :quote_volume %>
+    <%= form.text_field :quote_volume, id: :exchange_quote_volume %>
+  </div>
+
+  <div class="field">
+    <%= form.label :high24hr %>
+    <%= form.text_field :high24hr, id: :exchange_high24hr %>
+  </div>
+
+  <div class="field">
+    <%= form.label :low24hr %>
+    <%= form.text_field :low24hr, id: :exchange_low24hr %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

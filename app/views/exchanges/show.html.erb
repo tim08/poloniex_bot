@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Ex type:</strong>
+  <%= @exchange.ex_type %>
+</p>
+
+<p>
+  <strong>Last price:</strong>
+  <%= @exchange.last_price %>
+</p>
+
+<p>
+  <strong>Lowest ask:</strong>
+  <%= @exchange.lowest_ask %>
+</p>
+
+<p>
+  <strong>Highest bid:</strong>
+  <%= @exchange.highest_bid %>
+</p>
+
+<p>
+  <strong>Percent change:</strong>
+  <%= @exchange.percent_change %>
+</p>
+
+<p>
+  <strong>Base volume:</strong>
+  <%= @exchange.base_volume %>
+</p>
+
+<p>
+  <strong>Quote volume:</strong>
+  <%= @exchange.quote_volume %>
+</p>
+
+<p>
+  <strong>High24hr:</strong>
+  <%= @exchange.high24hr %>
+</p>
+
+<p>
+  <strong>Low24hr:</strong>
+  <%= @exchange.low24hr %>
+</p>
+
+<%= link_to 'Edit', edit_exchange_path(@exchange) %> |
+<%= link_to 'Back', exchanges_path %>

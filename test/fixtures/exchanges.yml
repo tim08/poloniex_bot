@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ex_type: 1
+  last_price: MyString
+  lowest_ask: MyString
+  highest_bid: MyString
+  percent_change: MyString
+  base_volume: MyString
+  quote_volume: MyString
+  high24hr: MyString
+  low24hr: MyString
+
+two:
+  ex_type: 1
+  last_price: MyString
+  lowest_ask: MyString
+  highest_bid: MyString
+  percent_change: MyString
+  base_volume: MyString
+  quote_volume: MyString
+  high24hr: MyString
+  low24hr: MyString
