@@ -27,7 +27,7 @@ last update <%= @exchanges.last.try(:created_at) %> - <%= $time_load.try(:round)
       <tr class="<%= cycle('even', 'odd') -%>">
         <td><%= exchange.name %></td>
         <td><%= exchange.last_price %></td>
-        <td><%= exchange.percent_change %></td>
+        <td class="<%= exchange.percent_change.to_f > 0 ? 'green' : 'red' %>"><%= exchange.percent_change %></td>
         <td><%= exchange.high24hr %></td>
         <td><%= exchange.low24hr %></td>
         <td><%= exchange.sell_orders %></td>
