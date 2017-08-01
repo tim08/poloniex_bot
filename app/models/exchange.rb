@@ -9,7 +9,10 @@ class Exchange < ApplicationRecord
                     BTC_XVC BTC_VRC BTC_VTC BTC_XBC BTC_XCP BTC_XEM BTC_XMR BTC_XPM BTC_XRP BTC_ETH BTC_SC BTC_BCY
                     BTC_EXP BTC_FCT BTC_RADS BTC_AMP BTC_DCR BTC_LSK BTC_LBC BTC_STEEM BTC_SBD BTC_ETC BTC_REP BTC_ARDR
                     BTC_ZEC BTC_STRAT BTC_NXC BTC_PASC BTC_GNT BTC_GNO USDT_BTC]
-  # enum ex_type: %i[BTC_BCN BTC_BELA BTC_BLK BTC_BTCD BTC_BTM BTC_BTS]
+  # enum ex_type: %i[BTC_BCN BTC_BELA BTC_BLK BTC_BTCD BTC_BTM
+  #                   BTC_NEOS BTC_NMC BTC_NOTE BTC_NXT BTC_PINK
+  #                    BTC_POT BTC_PPC BTC_RIC BTC_SJCX BTC_STR
+  #                 BTC_SYS BTC_BTS USDT_BTC]
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
