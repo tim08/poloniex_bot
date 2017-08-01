@@ -1,7 +1,7 @@
 require 'csv'
 class Exchange < ApplicationRecord
 
-  REQUIRED_ATTR = %w[name last_price percent_change high24hr low24hr sell_orders buy_orders count_in_btc]
+  REQUIRED_ATTR = %w[name last_price percent_change high24hr low24hr sell_orders buy_orders count_in_btc].freeze
 
   enum ex_type: %i[BTC_BCN BTC_BELA BTC_BLK BTC_BTCD BTC_BTM BTC_BTS BTC_BURST BTC_CLAM BTC_DASH BTC_DGB BTC_DOGE
                     BTC_EMC2 BTC_FLDC BTC_FLO BTC_GAME BTC_GRC BTC_HUC BTC_LTC BTC_MAID BTC_OMNI BTC_NAUT BTC_NAV
