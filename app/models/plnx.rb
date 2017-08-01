@@ -19,7 +19,7 @@ class Plnx
 
   def create_exchanges
     threads = []
-    @data.each_slice(10) do |e|
+    @data.each_slice(30) do |e|
       new_h = Hash[e]
       threads << Thread.new do
         new_h.each do |key, value|
