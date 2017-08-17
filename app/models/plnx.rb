@@ -22,6 +22,7 @@ class Plnx
     @data.each do |key, value|
       web_url = WEB_URL + key
       browser = Watir::Browser.new(:phantomjs)
+      sleep 1
       browser.goto(web_url)
       sleep 1
       document = Nokogiri::HTML(browser.html)
