@@ -21,7 +21,10 @@ class Plnx
   def create_exchanges
     @data.each do |key, value|
       web_url = WEB_URL + key
-      browser = Watir::Browser.new(:phantomjs)
+
+      @client = Selenium::WebDriver::Remote::Http::Default.new
+      @client.timeout = 300
+      browser = Watir::Browser.new(:phantomjs, :http_client => @client)
       sleep 1
       browser.goto(web_url)
       sleep 1
