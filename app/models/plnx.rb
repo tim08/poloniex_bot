@@ -22,12 +22,21 @@ class Plnx
     @data.each do |key, value|
       web_url = WEB_URL + key
 
-      @client = Selenium::WebDriver::Remote::Http::Default.new
-      @client.timeout = 300
-      browser = Watir::Browser.new(:phantomjs, :http_client => @client)
+      begin
+        @client = Selenium::WebDriver::Remote::Http::Default.new
+        @client.timeout = 300
+        browser = Watir::Browser.new(:phantomjs, :http_client => @client)
+        sleep 1
+        browser.goto(web_url)
+      rescue Timeout::Error
+        puts "Timeout Rescue"
+        browser.close
+        retry
+      end
+
+
       sleep 1
-      browser.goto(web_url)
-      sleep 1
+
       document = Nokogiri::HTML(browser.html)
       while document.css('#asksTotal').text.empty?
         sleep 1
