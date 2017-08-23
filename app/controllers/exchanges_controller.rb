@@ -6,7 +6,7 @@ class ExchangesController < ApplicationController
   # GET /exchanges
   # GET /exchanges.json
   def index
-    @exchanges = Exchange.distinct(:name).order(:name)
+    @exchanges = Exchange.order(:name)
     respond_to do |format|
       format.html
       format.csv { send_data @exchanges.to_csv }

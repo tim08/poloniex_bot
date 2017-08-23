@@ -28,31 +28,31 @@ class Plnx
         browser = Watir::Browser.new(:phantomjs, :http_client => @client)
         sleep 1
         browser.goto(web_url)
+
+
+        sleep 1
+
+        document = Nokogiri::HTML(browser.html)
+        while document.css('#asksTotal').text.empty?
+          sleep 1
+          p "add 1 sec to parse' pair #{key}"
+          document = Nokogiri::HTML(browser.html)
+        end
+        browser.close
+        Exchange.create(ex_type: key,
+                        name: key.gsub('BTC_', ''),
+                        last_price: value['last'],
+                        percent_change: (((value['percentChange']).to_f)*100).round(2),
+                        high24hr: value['high24hr'],
+                        low24hr: value['low24hr'],
+                        sell_orders: document.css('#asksTotal').text,
+                        buy_orders: document.css('#bidsTotal').text,
+                        count_in_btc: 1.00/((value['last']).to_f))
       rescue Timeout::Error
         puts "Timeout Rescue"
         browser.close
         retry
       end
-
-
-      sleep 1
-
-      document = Nokogiri::HTML(browser.html)
-      while document.css('#asksTotal').text.empty?
-        sleep 1
-        p "add 1 sec to parse' pair #{key}"
-        document = Nokogiri::HTML(browser.html)
-      end
-      browser.close
-      Exchange.create(ex_type: key,
-                      name: key.gsub('BTC_', ''),
-                      last_price: value['last'],
-                      percent_change: (((value['percentChange']).to_f)*100).round(2),
-                      high24hr: value['high24hr'],
-                      low24hr: value['low24hr'],
-                      sell_orders: document.css('#asksTotal').text,
-                      buy_orders: document.css('#bidsTotal').text,
-                      count_in_btc: 1.00/((value['last']).to_f))
 
     end
   end
