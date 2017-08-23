@@ -24,7 +24,7 @@ class Plnx
 
       begin
         @client = Selenium::WebDriver::Remote::Http::Default.new
-        @client.timeout = 30
+        @client.timeout = 50
         browser = Watir::Browser.new(:phantomjs, :http_client => @client)
         sleep 1
         browser.goto(web_url)
